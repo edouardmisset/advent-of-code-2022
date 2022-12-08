@@ -1,6 +1,7 @@
 {
   "name": "advent-of-code-2022",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "repository": "https://github.com/edouardmisset/advent-of-code-2022.git",
   "author": "Edouard Misset <edouardmisset@gmail.com>",

@@ -56,7 +56,7 @@ const maxCaloriesCarryingElf = async (input) => {
   return topCarryingElf
 }
 
-console.log(await maxCaloriesCarryingElf('./day-1/input-puzzle-1.txt')) // { calories: 72511, number: 185 }
+console.log(await maxCaloriesCarryingElf('./day-1/input.txt')) // { calories: 72511, number: 185 }
 
 // Part Two
 
@@ -83,4 +83,4 @@ const descendingCaloriesCarryingElves = async (input, numberOfElves) => {
   return topElves
 }
 
-console.log(await descendingCaloriesCarryingElves('./day-1/input-puzzle-1.txt', 3)) // 212117
+console.log(await descendingCaloriesCarryingElves('./day-1/input.txt', 3)) // 212117

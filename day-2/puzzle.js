@@ -123,8 +123,6 @@ const totalScoreFullRules = async input => {
     return acc + shapeIndices[myHand]
   }, 0)
 
-  console.log({ totalShapePoints })
-
   return totalMatchPoints + totalShapePoints
 }
 

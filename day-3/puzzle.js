@@ -32,14 +32,14 @@ import { readTxtFile } from '../utils.js'
 
 // Find the item type that appears in both compartments of each rucksack.What is the sum of the priorities of those item types ?
 
-const getPrioFromLetter = (letter) => {
+const getPrioFromLetter = letter => {
   // a => 1
   // A => 27
   const offset = /[A-Z]/.test(letter) ? -38 : -96
   return letter.charCodeAt(0) + offset
 }
 
-const getPrioSum = async (input) => {
+const getPrioSum = async input => {
   const bags = (await readTxtFile(input)).split('\n')
   const prioSum = bags.reduce((acc, bag) => {
     const size = bag.length
@@ -49,9 +49,9 @@ const getPrioSum = async (input) => {
     let commonLetter
 
     for (let i = 0; i < firstCompartment.length; i++) {
-      const firstLetter = firstCompartment[i];
+      const firstLetter = firstCompartment[i]
       for (let j = 0; j < secondCompartment.length; j++) {
-        const secondLetter = secondCompartment[j];
+        const secondLetter = secondCompartment[j]
         if (firstLetter === secondLetter) commonLetter = firstLetter
       }
     }
@@ -63,7 +63,7 @@ const getPrioSum = async (input) => {
 
 console.log(await getPrioSum('./day-3/input.txt')) // 7872
 
-// Part Two 
+// Part Two
 
 // As you finish identifying the misplaced items, the Elves come to you with another issue.
 
@@ -89,11 +89,39 @@ console.log(await getPrioSum('./day-3/input.txt')) // 7872
 
 // Find the item type that corresponds to the badges of each three - Elf group.What is the sum of the priorities of those item types ?
 
-
-const getBadgePrioSum = async (input) => {
+const getBadgePrioSum = async input => {
   const bags = (await readTxtFile(input)).split('\n')
 
+  const groups = []
 
+  for (let i = 0; i < bags.length; i += 3) {
+    groups.push([bags[i], bags[i + 1], bags[i + 2]])
+  }
+
+  const prioSum = groups.reduce((acc, val) => {
+    const firstElf = val[0]
+    const secondElf = val[1]
+    const thirdElf = val[2]
+
+    let commonLetter
+
+    for (let i = 0; i < firstElf.length; i++) {
+      const firstLetter = firstElf[i]
+      for (let j = 0; j < secondElf.length; j++) {
+        const secondLetter = secondElf[j]
+        if (firstLetter === secondLetter) {
+          for (let k = 0; k < thirdElf.length; k++) {
+            const thirdLetter = thirdElf[k]
+            if (secondLetter === thirdLetter)
+              commonLetter = firstLetter
+          }
+        }
+      }
+    }
+
+    return acc + getPrioFromLetter(commonLetter)
+  }, 0)
+  return prioSum
 }
 
-console.log(await getPrioSum('./day-3/test.txt')) // 
+console.log(await getBadgePrioSum('./day-3/input.txt')) // 2497

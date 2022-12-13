@@ -46,7 +46,7 @@ const maxCaloriesCarryingElf = async input => {
     .map(content => content.split('\n').map(Number))
 
   elvesCalories.forEach((elfCalories, elfIndex) => {
-    const elfTotalCalories = elfCalories.reduce((acc, val) => acc + val, 0)
+    const elfTotalCalories = elfCalories.reduce(sumArray, 0)
     if (elfTotalCalories > topCarryingElf?.calories) {
       topCarryingElf.calories = elfTotalCalories
       topCarryingElf.number = elfIndex

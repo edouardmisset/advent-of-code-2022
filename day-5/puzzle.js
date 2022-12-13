@@ -52,3 +52,12 @@ import { readTxtFile } from '../utils.js'
 
 // After the rearrangement procedure completes, what crate ends up on top of each stack ?
 
+const getTopMostCrates = async (input) => {
+  const data = await readTxtFile(input)
+
+  console.log(data)
+}
+
+
+
+console.log(await getTopMostCrates('./day-5/test.txt'))

@@ -9,3 +9,5 @@ export const readTxtFile = async (pathToFile) => {
     return console.error(message)
   }
 }
+
+export const sumArray = (acc, val) => acc + val

@@ -1,4 +1,4 @@
-import { readTxtFile } from '../utils.js'
+import { readTxtFile, sumArray } from '../utils.js'
 
 // Part One
 
@@ -35,7 +35,7 @@ import { readTxtFile } from '../utils.js'
 
 // Find the Elf carrying the most Calories.How many total Calories is that Elf carrying ?
 
-const maxCaloriesCarryingElf = async (input) => {
+const maxCaloriesCarryingElf = async input => {
   const topCarryingElf = {
     calories: 0,
     number: 0,
@@ -73,13 +73,12 @@ const descendingCaloriesCarryingElves = async (input, numberOfElves) => {
   const descendingTotalCalories = txtContent
     .split('\n\n')
     .map(caloryTextList => caloryTextList.split('\n').map(Number))
-    .map(caloryList => caloryList.reduce((acc, val) => acc + val, 0))
+    .map(caloryList => caloryList.reduce(sumArray, 0))
     .sort((a, b) => b - a)
 
-  const topElves = descendingTotalCalories.reduce(
-    (acc, val, i) => (i <= numberOfElves - 1 ? acc + val : acc),
-    0
-  )
+  const topElves = descendingTotalCalories
+    .slice(0, numberOfElves)
+    .reduce(sumArray, 0)
   return topElves
 }
 
